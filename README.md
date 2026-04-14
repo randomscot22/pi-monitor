@@ -34,4 +34,8 @@ sudo nano 1080P60EDID.txt
 00000000000000000000000000000000
 00000000000000000000000000000015
 
+v4l2-ctl -d /dev/v4l-subdev0 --set-edid=file=/home/pi/1080P60EDID.txt
+
+Ref:
+https://pimylifeup.com/raspberry-pi-webcam-server/
 
