@@ -39,3 +39,14 @@ v4l2-ctl -d /dev/v4l-subdev0 --set-edid=file=/home/pi/1080P60EDID.txt
 Ref:
 https://pimylifeup.com/raspberry-pi-webcam-server/
 
+MOTION_VERSION=4.7.0
+
+wget https://github.com/Motion-Project/motion/releases/download/release-$MOTION_VERSION/$(lsb_release -cs)_motion_$MOTION_VERSION-1_$(dpkg --print-architecture).deb -O motion.deb
+
+# Had to do this as next step hit error
+sudo apt install libmicrohttpd-dev
+
+sudo dpkg -i motion.deb
+
+
+
