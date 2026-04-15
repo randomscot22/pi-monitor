@@ -36,6 +36,13 @@ sudo nano 1080P60EDID.txt
 
 v4l2-ctl -d /dev/v4l-subdev0 --set-edid=file=/home/pi/1080P60EDID.txt
 
+media-ctl -d /dev/media3 -r
+
+media-ctl -d /dev/media3 -l ''\''csi2'\'':4 -> '\''rp1-cfe-csi2_ch0'\'':0 [1]'
+media-ctl -d /dev/media3 -V ''\''csi2'\'':0 [fmt:RGB888_1X24/1920x1080 field:none colorspace:srgb]'
+media-ctl -d /dev/media3 -V ''\''csi2'\'':4 [fmt:RGB888_1X24/1920x1080 field:none colorspace:srgb]'
+
+
 Ref:
 https://pimylifeup.com/raspberry-pi-webcam-server/
 
@@ -47,6 +54,10 @@ wget https://github.com/Motion-Project/motion/releases/download/release-$MOTION_
 sudo apt install libmicrohttpd-dev
 
 sudo dpkg -i motion.deb
+
+sudo nano /etc/motion/motion.conf
+daemon off
+stream_localhost off
 
 
 
