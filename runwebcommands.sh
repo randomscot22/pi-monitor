@@ -7,13 +7,13 @@ exec > >(tee -a "$LOGFILE") 2>&1
 export PS4='\n**** Command: \n'
 set -x
 
-device=/dev/media3
+device=/dev/media2
 
 tail -4 /boot/firmware/config.txt 
 
 v4l2-ctl --list-devices
 
-v4l2-ctl -d /dev/v4l-subdev2 --set-edid=file=/home/pi/1080P60EDID.txt --fix-edid-checksums
+v4l2-ctl -d /dev/v4l-subdev2 --set-edid=file=./1080P60EDID.txt --fix-edid-checksums
 
 v4l2-ctl -d /dev/v4l-subdev2 --query-dv-timings
 
