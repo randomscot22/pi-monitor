@@ -10,7 +10,9 @@ Pi5 2GB
 
 Ref: 
 https://suptronics.com/Raspberrypi/Interface/x1301-v1.1_software.html
+
 https://wiki.geekworm.com/X1301
+
 https://github.com/geekworm-com/RPi5_hdmi_in_card
 
 sudo nano /boot/firmware/config.txt
