@@ -4,19 +4,23 @@ Pi HDMI Monitor
 # Hardware
 
 SupTronics X1301 V1.1 (Purchased from Amazon)
-Pi4 4GB
+Pi5 2GB
 
 # Software Install
 
-Ref: https://suptronics.com/Raspberrypi/Interface/x1301-v1.1_software.html
+Ref: 
+https://suptronics.com/Raspberrypi/Interface/x1301-v1.1_software.html
+https://wiki.geekworm.com/X1301
+https://github.com/geekworm-com/RPi5_hdmi_in_card
 
 sudo nano /boot/firmware/config.txt
 
 Add two lines at the end of the file that reads like this:
-dtoverlay=tc358743,4lane=1
+dtoverlay=tc358743-pi5,4lane=1
 dtoverlay=tc358743-audio
 
 sudo nano 1080P60EDID.txt
+
 00ffffffffffff005262888800888888
 1c150103800000780aEE91A3544C9926
 0F505400000001010101010101010101
@@ -34,32 +38,6 @@ sudo nano 1080P60EDID.txt
 00000000000000000000000000000000
 00000000000000000000000000000015
 
-v4l2-ctl -d /dev/v4l-subdev0 --set-edid=file=/home/pi/1080P60EDID.txt
-
-media-ctl -d /dev/media3 -r
-
-media-ctl -d /dev/media3 -l ''\''csi2'\'':4 -> '\''rp1-cfe-csi2_ch0'\'':0 [1]'
-
-media-ctl -d /dev/media3 -V ''\''csi2'\'':0 [fmt:RGB888_1X24/1920x1080 field:none colorspace:srgb]'
-
-media-ctl -d /dev/media3 -V ''\''csi2'\'':4 [fmt:RGB888_1X24/1920x1080 field:none colorspace:srgb]'
-
-
-Ref:
-https://pimylifeup.com/raspberry-pi-webcam-server/
-
-MOTION_VERSION=4.7.0
-
-wget https://github.com/Motion-Project/motion/releases/download/release-$MOTION_VERSION/$(lsb_release -cs)_motion_$MOTION_VERSION-1_$(dpkg --print-architecture).deb -O motion.deb
-
-# Had to do this as next step hit error
-sudo apt install libmicrohttpd-dev
-
-sudo dpkg -i motion.deb
-
-sudo nano /etc/motion/motion.conf
-daemon off
-stream_localhost off
 
 
 
